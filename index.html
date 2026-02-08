@@ -3427,8 +3427,16 @@
                 }
             }, 1000);
 
+            // Anti-fraud listeners
+            document.addEventListener('fullscreenchange', window.app.checkFraud);
+            document.addEventListener('visibilitychange', window.app.checkFraud);
+
             // Load first question
             window.app.jumpQuestion(0);
+        };
+
+        window.app.checkFraud = () => {
+            if(ui.el('student-exam-screen').classList.contains('hidden-section')) return; 
         };
 
         window.app.jumpQuestion = (idx) => {
